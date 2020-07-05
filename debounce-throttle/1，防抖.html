@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            height: 200px;
+            background: #0A8CD2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box"></div>
+
+<script>
+    var box = document.querySelector('.box');
+    var testDebounce = debounce(move,1000);
+
+    box.onmousemove = testDebounce;
+
+
+    function move(ev){
+        this.innerHTML = ev.clientX;
+    }
+
+    function debounce(fn,wait){
+        let timmer = null;
+        return function(){
+            var args = arguments;
+            var now = !timmer;
+            timmer && clearTimeout(timmer);
+            timmer = setTimeout(()=>{
+                timmer = null;
+            },wait);
+            if(now){
+                fn.apply(this,args);
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

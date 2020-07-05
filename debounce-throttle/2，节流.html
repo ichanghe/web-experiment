@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            height: 200px;
+            background: #0A8CD2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box"></div>
+
+<script>
+    var box = document.querySelector('.box');
+    var testjl = jl(move,1000);
+
+    box.onmousemove = testjl;
+
+
+    function move(ev){
+        this.innerHTML = ev.clientX;
+    }
+
+    function jl(fn,wait){
+        let timmer = null;
+        return function(){
+            var args = arguments;
+            if(!timmer){
+                timmer = setTimeout(()=>{
+                    timmer = null;
+                    fn(args);
+                },wait)
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
